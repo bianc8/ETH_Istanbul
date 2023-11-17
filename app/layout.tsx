@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import { Web3ModalProvider } from "@/context/Web3Modal";
+import AppWrapper from "@/components/AppWrapper";
 import ConnectButton from "@/components/ConnectButton";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Web3ModalProvider>
+        <AppWrapper>
           <main className="flex min-h-screen flex-col items-center gap-4 p-8 bg-dark">
             <nav className="flex flex-row items-center align-center justify-between w-[90%] h-[70px] rounded-full backdrop-blur-md bg-white/10 py-2 px-16 border-2 border-gray-600">
               <Link
@@ -34,7 +34,7 @@ export default function RootLayout({
             </nav>
             {children}
           </main>
-        </Web3ModalProvider>
+        </AppWrapper>
       </body>
     </html>
   );

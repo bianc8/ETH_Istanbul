@@ -5,8 +5,6 @@ export default function AttestationLayout({
 }) {
   return (
     <>
-      <p>Attestation Layout</p>
-
       {children}
 
       <ol>
