@@ -5,8 +5,6 @@ export default function SchemaLayout({
 }) {
   return (
     <>
-      <p>Schema Layout</p>
-
       {children}
 
       <ol>

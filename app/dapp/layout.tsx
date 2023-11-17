@@ -9,8 +9,12 @@ export default function DappLayout({
     <div>
       <h1 className="text-2xl">Dapp Page</h1>
       <nav className="flex flex-row gap-8">
-        <Link href="/dapp/schema" className="underline">Schema</Link>
-        <Link href="/dapp/attestation" className="underline">Attestation</Link>
+        <Link href="/dapp/schema" className="underline">
+          Schema
+        </Link>
+        <Link href="/dapp/attestation" className="underline">
+          Attestation
+        </Link>
       </nav>
       {children}
     </div>
