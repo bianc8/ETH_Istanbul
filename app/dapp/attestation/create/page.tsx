@@ -1,4 +1,11 @@
+"use client"
+
+import { useSearchParams } from "next/navigation";
+
 const AttestationCreatePage = () => {
+  const schemaId = useSearchParams();
+  console.log(schemaId.get("schemaId"));
+
   return (
     <div>
       <h1>Attestation Create Page</h1>

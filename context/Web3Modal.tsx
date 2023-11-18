@@ -13,6 +13,13 @@ const sepolia = {
   explorerUrl: "https://sepolia.etherscan.io",
   rpcUrl: "https://1rpc.io/sepolia",
 };
+const base = {
+  chainId: 84531,
+  name: "Base Goerli",
+  currency: "ETH",
+  explorerUrl: "https://goerli.basescan.org/",
+  rpcUrl: "https://goerli.base.org",
+};
 
 // 3. Create modal
 const metadata = {
@@ -24,7 +31,10 @@ const metadata = {
 
 createWeb3Modal({
   ethersConfig: defaultConfig({ metadata }),
-  chains: [sepolia],
+  chains: [
+    sepolia,
+    base
+  ],
   projectId,
 });
 
