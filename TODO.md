@@ -8,7 +8,7 @@ Smart Contract:
 
 Front End:
   - Presentazione Fast
-  - Installa Snap
+  - OK | Installa Snap
   - Creare Schema su Sepolia
     - far vedere spunta Plugin Notifiche (flaggata di default)
     - far veedere spunta Multi-chain su Base (flaggata di default)

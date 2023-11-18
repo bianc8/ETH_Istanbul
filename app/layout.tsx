@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
 import AppWrapper from "@/components/AppWrapper";
 import ConnectButton from "@/components/ConnectButton";
+
+import metamaskLogo from "@/public/metamask.svg"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +33,12 @@ export default function RootLayout({
               >
                 BRND.sh
               </Link>
+
+              <div className="tooltip tooltip-bottom" data-tip="Install Metamask Snap by Push Protocol to receive live notification about your attestion!">
+                <Link className="btn bg-dark text-white btn-sm border-pink-900" href={"https://snaps.metamask.io/snap/npm/pushprotocol/snap/"} target="_blank" rel="nofollow">
+                  <Image src={metamaskLogo} alt="Metamask logo" width={20} height={20} /> Install Push Protocol Snap
+                </Link>
+              </div>
               <ConnectButton />
             </nav>
             {children}
