@@ -3,6 +3,7 @@
 import { useQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import { gql } from "@apollo/client";
 import { useWeb3ModalSigner } from "@web3modal/ethers5/react";
+import { useEffect, useState } from "react";
 
 const GET_MY_ATTESTATIONS = gql`
   query Schemas($resolverAddress: String!){
@@ -28,18 +29,27 @@ const GET_MY_ATTESTATIONS = gql`
 `;
 
 const MySchemas = () => {
-  // sepolia resolver
-  const variables = {resolverAddress: "0xB4Fb406b75db78D69c28E616Ef317f6ea6FE3497"}
-  // base resolver
-  // const variables = {resolverAddress: "0xc5ed581f35741340B4804CEf076Adc5C9C46A872"}
   const { signer } = useWeb3ModalSigner()
-  signer?.getChainId().then((chainId) => {
-    if (chainId !== 11155111) {
-      variables.resolverAddress = "0xc5ed581f35741340B4804CEf076Adc5C9C46A872";
-    }
-  });
-  
-  const { loading, error, data } = useQuery(GET_MY_ATTESTATIONS);
+  const sepoliaResolver = "0xB4Fb406b75db78D69c28E616Ef317f6ea6FE3497"
+  const goerliResolver = "0xc5ed581f35741340B4804CEf076Adc5C9C46A872"
+  const variables = { resolverAddress: sepoliaResolver }
+  const [clientName, setClientName] = useState("sepolia")
+
+  useEffect(() => {
+    signer?.getChainId().then((chainId) => {
+      console.log("chainId", chainId)
+      // sepolia === 11155111
+      if (chainId !== 11155111) {
+        variables.resolverAddress = goerliResolver;
+        setClientName("base")
+      } else {
+        variables.resolverAddress = sepoliaResolver;
+        setClientName("sepolia")
+      }
+    });
+  }, [signer])
+
+  const { loading, error, data } = useQuery(GET_MY_ATTESTATIONS, {variables, context: { clientName: clientName }});
   console.log(loading, error, data);
 
 

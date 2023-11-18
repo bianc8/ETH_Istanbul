@@ -1,20 +1,24 @@
-import Link from "next/link";
+"use client"
 
-const AttestationPage = () => {
+import { useSearchParams } from "next/navigation";
+
+const AttestationCreatePage = () => {
+  const schemaId = useSearchParams();
+  console.log(schemaId.get("schemaId"));
+
   return (
     <div>
-      <h1>Attestation Page</h1>
+      <h1>Attestation Create Page</h1>
 
-      <Link href="/dapp/attestation/create">
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Create Attestation
-        </button>
-      </Link>
-
+      <form>
+        <input type="text" placeholder="Attestation ID" />
+        <input type="text" placeholder="Attestation Address" />
+        <input type="text" placeholder="Attestation Params" />
+        <input type="text" placeholder="Resolver" />
+        <button type="submit">Submit</button>
+      </form>
     </div>
-  );
-};
+  )
+}
 
-export default AttestationPage;
+export default AttestationCreatePage;

@@ -39,9 +39,9 @@ function makeClient() {
           // TODO dynamic endpoints
         : */
         ApolloLink.split(
-            (operation) => operation.getContext().clientName === "sepolia",
-            endpointGoerli,
-            endpointSepolia,
+          (operation) => operation.getContext().clientName === "sepolia",
+          endpointSepolia,
+          endpointGoerli,
         ),
   });
 }

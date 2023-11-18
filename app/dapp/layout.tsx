@@ -15,6 +15,9 @@ export default function DappLayout({
         <Link href="/dapp/attestation" className="underline">
           Attestation
         </Link>
+        <Link href="/dapp/history" className="underline">
+          History
+        </Link>
       </nav>
       {children}
     </div>

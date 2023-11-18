@@ -29,11 +29,10 @@ const GET_MY_ATTESTATIONS = gql`
 `;
 
 const MyAttestations = () => {
-  // sepolia resolver
   const { signer } = useWeb3ModalSigner()
   const sepoliaResolver = "0xB4Fb406b75db78D69c28E616Ef317f6ea6FE3497"
   const goerliResolver = "0xc5ed581f35741340B4804CEf076Adc5C9C46A872"
-  const variables = { resolverAddress: goerliResolver }
+  const variables = { resolverAddress: sepoliaResolver }
   const [clientName, setClientName] = useState("sepolia")
 
   useEffect(() => {

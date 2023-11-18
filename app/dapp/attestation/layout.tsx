@@ -1,5 +1,3 @@
-import MyAttestations from "@/components/MyAttestations";
-
 export default function AttestationLayout({
   children,
 }: {
@@ -9,7 +7,6 @@ export default function AttestationLayout({
   return (
     <>
       {children}
-      <MyAttestations />
     </>
   );
 }

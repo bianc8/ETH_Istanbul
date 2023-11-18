@@ -1,5 +1,3 @@
-import MySchemas from "@/components/MySchemas";
-
 export default function SchemaLayout({
   children,
 }: {
@@ -8,7 +6,6 @@ export default function SchemaLayout({
   return (
     <>
       {children}
-      <MySchemas />
     </>
   )
 }
