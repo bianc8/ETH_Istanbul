@@ -3,6 +3,10 @@
 import { useState } from "react";
 
 import AddToSchemaComponent from "@/components/AddToSchemaComponent";
+import { EAS, Offchain, SchemaEncoder, SchemaRegistry } from "@ethereum-attestation-service/eas-sdk";
+import { SignerOrProvider } from "@ethereum-attestation-service/eas-sdk/dist/transaction";
+import { ethers } from 'ethers';
+import { useWeb3ModalSigner } from '@web3modal/ethers5/react'
 
 export type IFieldType = {
   type: string;
@@ -40,6 +44,7 @@ const SchemaCreatePage = () => {
       description: "An Ethereum address",
     }
   ];
+  const { signer } = useWeb3ModalSigner()
 
   const handleAddField = (newField: IField) => {
     setFields(oldFields => [...oldFields, newField])
@@ -53,21 +58,60 @@ const SchemaCreatePage = () => {
     setFields(oldFields => oldFields.filter(field => field.id !== id))
   }
 
+  const handleCreateSchema = async (event: any) => {
+    event?.preventDefault();
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+
+    const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia v0.26
+
+    // Initialize the sdk with the address of the EAS Schema contract address
+    const eas = new EAS(EASContractAddress);
+
+    // Gets a default provider (in production use something else like infura/alchemy)
+    
+
+    // Connects an ethers style provider/signingProvider to perform read/write functions.
+    // MUST be a signer to do write operations!
+    eas.connect(signer as unknown as SignerOrProvider);
+    
+    const schemaRegistryContractAddress = "0x4af60f4674391141ceb872bb3e8ba58c9948e68e01b3fd42a1da0927d7fe6883";
+    const schemaRegistry = new SchemaRegistry(schemaRegistryContractAddress);
+
+    schemaRegistry.connect(signer as unknown as SignerOrProvider);
+
+    const schema = "string name";
+    const resolverAddress = "0x0a7E2Ff54e76B8E6659aedc9103FB21c038050D0"; // Sepolia 0.26
+    const revocable = true;
+
+    const transaction = await schemaRegistry.register({
+      schema,
+      resolverAddress,
+      revocable,
+    });
+
+    // Optional: Wait for transaction to be validated
+    await transaction.wait();
+    
+    console.log("Schema Created")
+
+  }
+
   return (
-    <div>
+    <div className="my-10">
       <h1>Schema Create Page</h1>
 
-      <form>
+      <form className="flex flex-col gap-4" onSubmit={(e) => handleCreateSchema(e)}>
         <AddToSchemaComponent
           fieldTypes={fieldTypes}
-          handleDeleteField={() => handleDeleteField(1)} />
+          handleDeleteField={() => handleDeleteField(1)} key={1} />
         <AddToSchemaComponent
           fieldTypes={fieldTypes}
-          handleDeleteField={() => handleDeleteField(1)} />
+          handleDeleteField={() => handleDeleteField(21)} key={21} />
 
 
         <input type="text" placeholder="Resolver Contract Address" disabled />
-        <button type="submit">Submit</button>
+        <button type="submit" className="btn justify-center">Submit</button>
       </form>
     </div>
   )
