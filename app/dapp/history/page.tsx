@@ -1,7 +1,7 @@
 import MyAttestations from "@/components/MyAttestations";
 import MySchemas from "@/components/MySchemas";
 
-const HistoryPage = ({ children }: { children: React.ReactNode }) => {
+const HistoryPage = () => {
   return (
     <>
       <h1 className="text-3xl font-bold">Schemas</h1>
