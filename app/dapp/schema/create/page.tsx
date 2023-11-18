@@ -7,6 +7,8 @@ import { EAS, Offchain, SchemaEncoder, SchemaRegistry } from "@ethereum-attestat
 import { SignerOrProvider } from "@ethereum-attestation-service/eas-sdk/dist/transaction";
 import { ethers } from 'ethers';
 import { useWeb3ModalSigner } from '@web3modal/ethers5/react'
+import { useQuery } from '@apollo/experimental-nextjs-app-support/ssr'
+import { gql } from '@apollo/client'
 
 export type IFieldType = {
   type: string;
@@ -19,7 +21,16 @@ export type IField = {
   type: IFieldType;
 }
 
-
+const GET_MY_ATTESTATIONS = gql`
+query {
+  attestations(where: { schema: { is: { resolver: {
+    equals: "0xB4Fb406b75db78D69c28E616Ef317f6ea6FE3497"
+  } } } }) {
+    schema {
+      resolver
+    }
+  }
+}`;
 const SchemaCreatePage = () => {
   const [fields, setFields] = useState<IField[]>([])
   const fieldTypes: IFieldType[] = [
@@ -45,6 +56,7 @@ const SchemaCreatePage = () => {
     }
   ];
   const { signer } = useWeb3ModalSigner()
+  const { loading, error, data } = useQuery(GET_MY_ATTESTATIONS);
 
   const handleAddField = (newField: IField) => {
     setFields(oldFields => [...oldFields, newField])
@@ -69,19 +81,17 @@ const SchemaCreatePage = () => {
     const eas = new EAS(EASContractAddress);
 
     // Gets a default provider (in production use something else like infura/alchemy)
-    
-
     // Connects an ethers style provider/signingProvider to perform read/write functions.
     // MUST be a signer to do write operations!
     eas.connect(signer as unknown as SignerOrProvider);
     
-    const schemaRegistryContractAddress = "0x4af60f4674391141ceb872bb3e8ba58c9948e68e01b3fd42a1da0927d7fe6883";
+    const schemaRegistryContractAddress = "0x0a7E2Ff54e76B8E6659aedc9103FB21c038050D0";
     const schemaRegistry = new SchemaRegistry(schemaRegistryContractAddress);
 
     schemaRegistry.connect(signer as unknown as SignerOrProvider);
 
-    const schema = "string name";
-    const resolverAddress = "0x0a7E2Ff54e76B8E6659aedc9103FB21c038050D0"; // Sepolia 0.26
+    const schema = "string names";
+    const resolverAddress = "0xB4Fb406b75db78D69c28E616Ef317f6ea6FE3497"; // Smart Contract
     const revocable = true;
 
     const transaction = await schemaRegistry.register({
@@ -93,7 +103,7 @@ const SchemaCreatePage = () => {
     // Optional: Wait for transaction to be validated
     await transaction.wait();
     
-    console.log("Schema Created")
+    console.log("Schema Created", transaction)
 
   }
 
@@ -108,7 +118,6 @@ const SchemaCreatePage = () => {
         <AddToSchemaComponent
           fieldTypes={fieldTypes}
           handleDeleteField={() => handleDeleteField(21)} key={21} />
-
 
         <input type="text" placeholder="Resolver Contract Address" disabled />
         <button type="submit" className="btn justify-center">Submit</button>
