@@ -18,7 +18,7 @@ const sepolia = {
 const metadata = {
   name: "My Website",
   description: "My Website description",
-  url: "https://mywebsite.com",
+  url: "https://violeth-ist.vercel.app/",
   icons: ["https://avatars.mywebsite.com/"],
 };
 

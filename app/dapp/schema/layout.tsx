@@ -1,3 +1,5 @@
+import MySchemas from "@/components/MySchemas";
+
 export default function SchemaLayout({
   children,
 }: {
@@ -6,18 +8,7 @@ export default function SchemaLayout({
   return (
     <>
       {children}
-
-      <ol>
-        <li>
-          Schema ID Schema Address Schema Params Resolver No. Attestations
-        </li>
-        <li>
-          Schema ID Schema Address Schema Params Resolver No. Attestations
-        </li>
-        <li>
-          Schema ID Schema Address Schema Params Resolver No. Attestations
-        </li>
-      </ol>
+      <MySchemas />
     </>
   )
 }

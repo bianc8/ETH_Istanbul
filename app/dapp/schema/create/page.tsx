@@ -7,8 +7,6 @@ import { EAS, Offchain, SchemaEncoder, SchemaRegistry } from "@ethereum-attestat
 import { SignerOrProvider } from "@ethereum-attestation-service/eas-sdk/dist/transaction";
 import { ethers } from 'ethers';
 import { useWeb3ModalSigner } from '@web3modal/ethers5/react'
-import { useQuery } from '@apollo/experimental-nextjs-app-support/ssr'
-import { gql } from '@apollo/client'
 
 export type IFieldType = {
   type: string;
@@ -21,16 +19,6 @@ export type IField = {
   type: IFieldType;
 }
 
-const GET_MY_ATTESTATIONS = gql`
-query {
-  attestations(where: { schema: { is: { resolver: {
-    equals: "0xB4Fb406b75db78D69c28E616Ef317f6ea6FE3497"
-  } } } }) {
-    schema {
-      resolver
-    }
-  }
-}`;
 const SchemaCreatePage = () => {
   const [fields, setFields] = useState<IField[]>([])
   const fieldTypes: IFieldType[] = [
@@ -56,7 +44,6 @@ const SchemaCreatePage = () => {
     }
   ];
   const { signer } = useWeb3ModalSigner()
-  const { loading, error, data } = useQuery(GET_MY_ATTESTATIONS);
 
   const handleAddField = (newField: IField) => {
     setFields(oldFields => [...oldFields, newField])
@@ -73,7 +60,7 @@ const SchemaCreatePage = () => {
   const handleCreateSchema = async (event: any) => {
     event?.preventDefault();
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    console.log("Start Creating Schema");
 
     const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia v0.26
 
@@ -90,8 +77,8 @@ const SchemaCreatePage = () => {
 
     schemaRegistry.connect(signer as unknown as SignerOrProvider);
 
-    const schema = "string names";
-    const resolverAddress = "0xB4Fb406b75db78D69c28E616Ef317f6ea6FE3497"; // Smart Contract
+    const schema = "string name";
+    const resolverAddress = "0xC0x0a7E2Ff54e76B8E6659aedc9103FB21c038050D0"; //0xB4Fb406b75db78D69c28E616Ef317f6ea6FE3497"; // Smart Contract
     const revocable = true;
 
     const transaction = await schemaRegistry.register({
@@ -103,7 +90,7 @@ const SchemaCreatePage = () => {
     // Optional: Wait for transaction to be validated
     await transaction.wait();
     
-    console.log("Schema Created", transaction)
+    console.log("Schema Created", transaction);
 
   }
 
