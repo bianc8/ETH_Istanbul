@@ -156,6 +156,7 @@ const SchemaCreatePage = () => {
           <p className="flex flex-row text-lg space-x-1">
             <span>Deploy on Base</span>
             <Image src={baseLogo} width={25} height={25} alt="Base Logo" />
+            <span className="text-xs">*Powered by Chainlink CCIP</span>
           </p>
         </div>
 
