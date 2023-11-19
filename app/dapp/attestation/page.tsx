@@ -92,7 +92,7 @@ const SchemaCreatePage = () => {
   return (
     <div className="my-10 w-full space-y-4 flex flex-col">
       <h1 className="text-2xl">Create Attestation</h1>
-      <p className="text-lg">Use the schema to make an attestation</p>
+      <p className="text-neutral-content">Use the schema to make an attestation</p>
       <form
         className="flex flex-col gap-4 p-6 bg-neutral rounded-xl"
         onSubmit={(e) => handleCreateSchema(e)}

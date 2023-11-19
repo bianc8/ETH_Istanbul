@@ -5,11 +5,11 @@ export const dynamic = 'force-dynamic'
 
 const HistoryPage = () => {
   return (
-    <div className="flex flex-col my-10">
+    <div className="flex flex-col my-12">
       <h1 className="text-3xl font-bold">Schemas</h1>
       <MySchemas />
 
-      <h1 className="text-3xl font-bold mt-10">Attestations</h1>
+      <h1 className="text-3xl font-bold mt-16">Attestations</h1>
       <MyAttestations />
     </div>
   )
