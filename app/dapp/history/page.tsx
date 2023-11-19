@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic'
 
 const HistoryPage = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col my-10">
       <h1 className="text-3xl font-bold">Schemas</h1>
       <MySchemas />
 

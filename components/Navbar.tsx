@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="flex max-w-6xl mx-auto items-center justify-between w-full h-[70px] py-8 px-16">
+      <nav className="flex max-w-6xl mx-auto items-center justify-between w-full h-[70px] py-12 px-16">
         <Link
           href="/"
           className="text-xl font-bold underline underline-p-4 hover:text-slate-300 transition ease-in-out"

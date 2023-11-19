@@ -10,7 +10,7 @@ const AppWrapper = ({ children }: { children: React.ReactNode }) => {
     <>
     <ProgressBar
         height="4px"
-        color="#fffd00"
+        color="#959FFF"
         options={{ 
           showSpinner: false,
           minimum: 0.2

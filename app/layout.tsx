@@ -8,6 +8,7 @@ import AppWrapper from "@/components/AppWrapper";
 
 import metamaskLogo from "@/public/metamask.svg";
 import Navbar from "@/components/Navbar";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,18 +26,25 @@ export default function RootLayout({
     <html lang="en" data-theme="dark">
       <body className={inter.className}>
         <AppWrapper>
-          <nav className="flex flex-row items-center align-center justify-center w-full h-[70px] backdrop-blur-md bg-[#403D43] py-2 px-16 border-2 border-gray-600">
-            <button className="btn">
+          <div className="flex flex-row items-center align-center justify-center w-full h-[50px] backdrop-blur-md bg-[#403D43] py-2 px-16 border-2 border-gray-600">
+            <div className="flex items-center space-x-2">
               <Image
                 src={metamaskLogo}
                 alt="Metamask logo"
                 width={20}
                 height={20}
               />
-              Install Push Protocol Snap to receive live notification.
-              <span className="underline">Read more</span>
-            </button>
-          </nav>
+              <span>
+                Install Push Protocol Snap to receive live notification.
+              </span>
+              <label
+                htmlFor="my_modal_6"
+                className="underline hover:cursor-pointer"
+              >
+                Read more
+              </label>
+            </div>
+          </div>
           <main className="bg-dark">
             <Navbar />
 
@@ -45,6 +53,39 @@ export default function RootLayout({
             </div>
           </main>
         </AppWrapper>
+        <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+        <div className="modal" role="dialog">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Hi sir!</h3>
+            <p className="py-4">
+              Install Metamask Snap by Push Protocol to receive live
+              notification about your attestion.{" "}
+              <Link
+                href="https://snaps.metamask.io/snap/npm/pushprotocol/snap/"
+                target="_blank"
+                className="text-primary underline hover:cursor-pointer"
+              >
+                Install now!
+              </Link>
+            </p>
+            <p>
+              Note: remember to opt-in in our Push Protocol channel{" "}
+              <span className="text-primary italic">test-violet-1</span> on{" "}
+              <Link
+                href={"https://staging.push.org/channels"}
+                className="link link-primary"
+              >
+                staging.push.org/channels
+              </Link>
+              . Otherwise you cannot receive the notifications.
+            </p>
+            <div className="modal-action">
+              <label htmlFor="my_modal_6" className="btn">
+                Close
+              </label>
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );
