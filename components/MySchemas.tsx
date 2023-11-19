@@ -5,28 +5,21 @@ import { gql } from "@apollo/client";
 import { useWeb3ModalSigner } from "@web3modal/ethers5/react";
 import { useEffect, useState } from "react";
 
-const GET_MY_ATTESTATIONS = gql`
-  query Schemas($resolverAddress: String!){
-    attestations(
-      where: {
-        schema: {
-          is: {
-            resolver: { equals: $resolverAddress }
-          }
-        }
+const GET_MY_ATTESTATIONS = gql`query Schemas($resolverAddress: String!){
+  schemata(
+    where: {
+      resolver: {
+        equals: $resolverAddress
       }
-    ) {
-      schema {
-        id
-        creator
-        resolver
-        _count {
-          attestations
-        }
-      }
+    }) {
+    id
+    creator
+    resolver
+    _count {
+      attestations
     }
   }
-`;
+}`;
 
 const MySchemas = () => {
   const { signer } = useWeb3ModalSigner()
@@ -67,12 +60,12 @@ const MySchemas = () => {
           <th>Number of Attestations</th>
         </tr>
 
-      {data.attestations.map((attestation: any, index: number) => (
+      {data.schemata.map((schema: any, index: number) => (
         <tr key={index}>
-          <td>{attestation.schema.id.length > 10 ? attestation.schema.id.slice(0, 10)+'...' : attestation.schema.id}</td>
-          <td>{attestation.schema.creator.length > 10 ? attestation.schema.creator.slice(0, 10)+'...' : attestation.schema.creator}</td>
-          <td>{attestation.schema.resolver.length > 10 ? attestation.schema.resolver.slice(0, 10)+'...' : attestation.schema.resolver}</td>
-          <td>{attestation.schema._count.attestations}</td>
+          <td>{schema.id.length > 10 ? schema.id.slice(0, 10)+'...' : schema.id}</td>
+          <td>{schema.creator.length > 10 ? schema.creator.slice(0, 10)+'...' : schema.creator}</td>
+          <td>{schema.resolver.length > 10 ? schema.resolver.slice(0, 10)+'...' : schema.resolver}</td>
+          <td>{schema._count.attestations}</td>
         </tr>
       ))}
       </thead>

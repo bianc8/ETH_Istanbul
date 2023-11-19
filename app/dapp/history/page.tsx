@@ -1,6 +1,8 @@
 import MyAttestations from "@/components/MyAttestations";
 import MySchemas from "@/components/MySchemas";
 
+export const dynamic = 'force-dynamic'
+
 const HistoryPage = () => {
   return (
     <>

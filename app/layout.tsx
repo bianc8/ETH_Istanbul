@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark">
       <body className={inter.className}>
         <AppWrapper>
           <main className="flex min-h-screen flex-col items-center gap-4 p-8 bg-dark">
