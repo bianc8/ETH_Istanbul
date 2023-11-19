@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="flex flex-row items-center align-center justify-between w-full h-[70px] py-8 px-16">
+      <nav className="flex max-w-6xl mx-auto items-center justify-between w-full h-[70px] py-8 px-16">
         <Link
           href="/"
           className="text-xl font-bold underline underline-p-4 hover:text-slate-300 transition ease-in-out"
@@ -21,42 +21,24 @@ const Navbar = () => {
           <Image src={logoImg} width={60} height={60} alt="N-Hub logo" />
         </Link>
 
-        <div role="tablist" className="tabs tabs-lg tabs-lifted">
-          <Link href="/dapp/attestation">
-            <input
-              type="radio"
-              name="my_tabs_2"
-              role="tab"
+        <div role="tablist" className="tabs tabs-lg tabs-bordered">
+
+          <Link href="/dapp/schema" role="tab" className={
+                pathname == "/dapp/schema" ? "tab tab-active" : "tab"
+              }>
+            Schema
+          </Link>
+          <Link href="/dapp/attestation" role="tab"
               className={
                 pathname == "/dapp/attestation" ? "tab tab-active" : "tab"
-              }
-              aria-label="Attest"
-            />
+              }>
+            Attestation
           </Link>
-
-          <Link href="/dapp/schema">
-            <input
-              type="radio"
-              name="my_tabs_2"
-              role="tab"
-              className={
-                pathname == "/dapp/schema" ? "tab tab-active" : "tab"
-              }
-              aria-label="Schema"
-              checked
-            />
-          </Link>
-
-          <Link href="/dapp/history">
-            <input
-              type="radio"
-              name="my_tabs_2"
-              role="tab"
+          <Link href="/dapp/history" role="tab"
               className={
                 pathname == "/dapp/history" ? "tab tab-active" : "tab"
-              }
-              aria-label="Archive"
-            />
+              }>
+            History
           </Link>
         </div>
         <ConnectButton />

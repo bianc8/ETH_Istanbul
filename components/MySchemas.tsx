@@ -59,7 +59,8 @@ const MySchemas = () => {
           <th>Schema Resolver</th>
           <th>Number of Attestations</th>
         </tr>
-
+        </thead>
+        <tbody>
       {data.schemata.map((schema: any, index: number) => (
         <tr key={index}>
           <td>{schema.id.length > 10 ? schema.id.slice(0, 10)+'...' : schema.id}</td>
@@ -68,7 +69,7 @@ const MySchemas = () => {
           <td>{schema._count.attestations}</td>
         </tr>
       ))}
-      </thead>
+      </tbody>
     </table>
   )
 }

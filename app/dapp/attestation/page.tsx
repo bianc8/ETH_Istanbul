@@ -90,11 +90,11 @@ const SchemaCreatePage = () => {
   };
 
   return (
-    <div className="my-10">
-      <h1>Attestation Create Page</h1>
-
+    <div className="my-10 w-full space-y-4 flex flex-col">
+      <h1 className="text-2xl">Create Attestation</h1>
+      <p className="text-lg">Use the schema to make an attestation</p>
       <form
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-4 p-6 bg-neutral rounded-xl"
         onSubmit={(e) => handleCreateSchema(e)}
       >
         <div className="flex flex-col gap-1">
@@ -103,7 +103,7 @@ const SchemaCreatePage = () => {
             type="text"
             placeholder="Field Name"
             required
-            className="rounded-lg p-2"
+            className="rounded-lg p-2 input"
             value={schema}
             onChange={(e) => setSchema(e.target.value)}
           />
@@ -115,7 +115,7 @@ const SchemaCreatePage = () => {
             type="text"
             placeholder="Field Name"
             required
-            className="rounded-lg p-2"
+            className="rounded-lg p-2 input"
             value={recipient}
             onChange={(e) => setRecipient(e.target.value)}
           />
@@ -127,7 +127,7 @@ const SchemaCreatePage = () => {
             type="text"
             placeholder="Field Name"
             required
-            className="rounded-lg p-2"
+            className="rounded-lg p-2 input"
             value={field1}
             onChange={(e) => setField1(e.target.value)}
           />
@@ -139,12 +139,12 @@ const SchemaCreatePage = () => {
             type="text"
             placeholder="Field Name"
             required
-            className="rounded-lg p-2"
+            className="rounded-lg p-2 input"
             value={field2}
             onChange={(e) => setField2(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn justify-center">
+        <button type="submit" className="btn max-w-xs w-full self-center mt-8 border-primary hover:border-primary">
           {loading ? "Loading..." : "Submit"}
         </button>
       </form>

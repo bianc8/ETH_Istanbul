@@ -66,7 +66,8 @@ const MyAttestations = () => {
           <th>Revocable?</th>
           <th>Schema Resolver</th>
         </tr>
-
+        </thead>
+        <tbody>
       {data.attestations.map((attestation: any, index: number) => (
         <tr key={index}>
           <td>{attestation.id.length > 10 ? attestation.id.slice(0, 10)+'...' : attestation.id}</td>
@@ -76,7 +77,7 @@ const MyAttestations = () => {
           <td>{attestation.schema.resolver.length > 10 ? attestation.schema.resolver.slice(0, 10)+'...' : attestation.schema.resolver}</td>
         </tr>
       ))}
-      </thead>
+      </tbody>
     </table>
   )
 }

@@ -87,11 +87,11 @@ const SchemaCreatePage = () => {
   };
 
   return (
-    <div className="my-10">
-      <h1>Schema Create Page</h1>
-
+    <div className="my-10 w-full space-y-4 flex flex-col">
+      <h1 className="text-2xl">Create Schema</h1>
+      <p className="text-lg">Add the data structure of the attestation</p>
       <form
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-4 p-6 bg-neutral rounded-xl"
         onSubmit={(e) => handleCreateSchema(e)}
       >
         <div className="flex flex-row gap-4">
@@ -99,11 +99,11 @@ const SchemaCreatePage = () => {
             type="text"
             placeholder="Field Name"
             required
-            className="rounded-lg p-2"
+            className="rounded-lg p-2 input grow"
             value={field1}
             onChange={(e) => setField1(e.target.value)}
           />
-          <select className="select select-primary w-full max-w-xs">
+          <select className="select select-primary bg-primary">
             {fieldTypes.map((fieldType, index) => (
               <option key={index} value={fieldType.type}>
                 {fieldType.type}
@@ -117,11 +117,11 @@ const SchemaCreatePage = () => {
             type="text"
             placeholder="Field Name"
             required
-            className="rounded-lg p-2"
+            className="rounded-lg p-2 input grow"
             value={field2}
             onChange={(e) => setField2(e.target.value)}
           />
-          <select className="select select-primary w-full max-w-xs">
+          <select className="select select-primary bg-primary">
             {fieldTypes.map((fieldType, index) => (
               <option key={index} value={fieldType.type}>
                 {fieldType.type}
@@ -159,8 +159,8 @@ const SchemaCreatePage = () => {
           </p>
         </div>
 
-        <button type="submit" className="btn justify-center">
-          {loading ? "Loading..." : "Submit"}
+        <button type="submit" className="btn max-w-xs w-full self-center mt-8 border-primary hover:border-primary">
+          {loading ? "Loading..." : "Create Schema"}
         </button>
       </form>
     </div>
