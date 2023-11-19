@@ -9,23 +9,23 @@ Smart Contract:
 Front End:
   - Presentazione Fast
   - OK | Installa Snap
-  - Creare Schema su Sepolia
-    - far vedere spunta Plugin Notifiche (flaggata di default)
-    - far veedere spunta Multi-chain su Base (flaggata di default)
+  - OK Creare Schema su Sepolia
+    - OK | far vedere spunta Plugin Notifiche (flaggata di default)
+    - far vedere spunta Multi-chain su Base (flaggata di default)
   - Far vedere Metamask
-    - transazione Sepolia
+    - transazione Sepolia (nel readme link)
     - transazione Base (Crosschain CCIP far vedere firmata da Sepolia)
-  - Far vedere due notifiche (toast) transazione eseguita + hash
+  - OK | Far vedere due notifiche (toast) transazione eseguita + hash
   
   # scritta fine chainlink ccip multi-chain
   # far vedere schema su base
 
   # Feature Notifiche (solo Sepolia)
-  - Crea Attestato da Schema
-    - Far vedere schema resolver dinamico da searchParams
-    - Inserire input dell'utente 
-    - Far vedere destinatario targetizzato del canale Push
+  - OK | Crea Attestato da Schema
+    - KO | Far vedere schema resolver dinamico da searchParams
+    - OK | Inserire input dell'utente 
+    - OK | Far vedere destinatario targetizzato del canale Push
     - Taglio, far vedere transazione attestato
-    - Far vedere Snap
+    - OK | Far vedere Snap
       - far vedere la transazione Sepolia
       - far vedere la transazione Base (Crosschain CCIP far vedere firmata da Sepolia)

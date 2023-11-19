@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 
 import AppWrapper from "@/components/AppWrapper";
-import ConnectButton from "@/components/ConnectButton";
 
-import metamaskLogo from "@/public/metamask.svg"
+import metamaskLogo from "@/public/metamask.svg";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,23 +25,24 @@ export default function RootLayout({
     <html lang="en" data-theme="dark">
       <body className={inter.className}>
         <AppWrapper>
-          <main className="flex min-h-screen flex-col items-center gap-4 p-8 bg-dark">
-            <nav className="flex flex-row items-center align-center justify-between w-[90%] h-[70px] rounded-full backdrop-blur-md bg-white/10 py-2 px-16 border-2 border-gray-600">
-              <Link
-                href="/"
-                className="text-xl font-bold underline underline-p-4 hover:text-slate-300 transition ease-in-out"
-              >
-                BRND.sh
-              </Link>
+          <nav className="flex flex-row items-center align-center justify-center w-full h-[70px] backdrop-blur-md bg-[#403D43] py-2 px-16 border-2 border-gray-600">
+            <button className="btn">
+              <Image
+                src={metamaskLogo}
+                alt="Metamask logo"
+                width={20}
+                height={20}
+              />
+              Install Push Protocol Snap to receive live notification.
+              <span className="underline">Read more</span>
+            </button>
+          </nav>
+          <main className="bg-dark">
+            <Navbar />
 
-              <div className="tooltip tooltip-bottom" data-tip="Install Metamask Snap by Push Protocol to receive live notification about your attestion!">
-                <Link className="btn bg-dark text-white btn-sm border-pink-900" href={"https://snaps.metamask.io/snap/npm/pushprotocol/snap/"} target="_blank" rel="nofollow">
-                  <Image src={metamaskLogo} alt="Metamask logo" width={20} height={20} /> Install Push Protocol Snap
-                </Link>
-              </div>
-              <ConnectButton />
-            </nav>
-            {children}
+            <div className="flex min-h-screen flex-col items-center gap-4 w-[90%] mx-auto justify-between">
+              {children}
+            </div>
           </main>
         </AppWrapper>
       </body>
